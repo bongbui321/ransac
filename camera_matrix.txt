@@ -1,0 +1,25 @@
+3D world coordinate -> 3D camera coordinate -> 3D camera coordinate -> pixel coordinate
+
+3D camera -> 2D camera: 
+    - https://www.cse.psu.edu/~rtc12/CSE486/lecture12.pdf (slide 15)
+
+3D world -> 3D camera:
+    - https://www.cse.psu.edu/~rtc12/CSE486/lecture12.pdf (slide 33)
+    
+2D camera -> pixel coordinate - affine transformation - (intrinsic parameters):
+    - scale from 2D camera coordinate and add the principle coordinate to 
+      appropriate coordinate field.
+
+
+------PARAMETER ESTIMATION (GEOMETRIC ESTIMATION &  GEOMETRIC TRANSFORMATION ESTIMATION):-------
+
+1. Most general strategy: LEAST-SQUARED estimation
+
+2. RANSAC
+    1. choose randomly n samples from the pool
+    2. Estimate the parameters 
+    3. count the number of chose samples with distance to the model < d
+    4. If num_of_close >=T: 
+        4.1 Re-estimate the parameters and end
+        4.2 else continue
+    5. Repeat the four steps above for N times (N is the number of iterations that gives us the probability of 99% of getting a set of sample without an outlier)
