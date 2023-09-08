@@ -10,11 +10,10 @@ class RANSAC():
         self.data = data
         self.model = model_class()
         self.min_samples = min_samples
-        self.residual_threshold = residual_threshold 
+        self.d= residual_threshold 
         assert type(data) == np.ndarray
         self.inliers = np.full(data.shape, fill_value=False)
         self.N = max_trials
-        self.d = 5.99*self.variance
         assert len(data.shape[1]) >= 2
         self.T = 0.8*len(data.shape[1])
     
@@ -23,11 +22,31 @@ class RANSAC():
         for _ in range(self.N):
             self.model.estimate(current_subset)
             count=0
-            for i in range(self.data):
-                if abs(self.data[i]-self.model.eval(self.data[i]) <= self.residual_threshold) and \
-                        self.model.residual(self.data[i]) < self.d: 
+            for i, data in enumerate(self.data):
+                if (self.model.residuals(data) <= self.d):
                     count += 1
                     current_subset.append(self.data[i], axis=0)
             if count >= self.T: self.model.estimate(current_subset)
             return (self.model, self.inliers)
         return (self.model, self.inliers)
+
+class Line():
+    def __init__(self, m, b):
+        self.f = np.array([m,b])
+    
+    def estimate(self, data):
+        alpha = 0.05
+        self.f = np.random.rand([1,2])
+        cost_f = 0
+        for _ in range (100):
+            cost_f = sum(np.power(eval(data[:,0])-data[:,1]), 2)
+            #self.f[0, 0] = self.f[0,0] - alpha*((1/len(data))sum(2))
+            pass
+        return True
+        
+    @staticmethod
+    def eval(self, data):
+        return self.f[0]*data + self.b
+        
+    def residuals(self):
+        pass
