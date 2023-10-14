@@ -1,0 +1,9 @@
+Convolution neural network 
+    - Multiple layer o convolution neural layers
+    - The output is fed into activation function 
+    - Pooling to decrease noise
+
+Convolution filters are learned 
+---------------------------------
+    - stochastic gradient descent
+    - Usually learn 32 - 512 filters in parallel
