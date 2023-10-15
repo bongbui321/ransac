@@ -1,0 +1,15 @@
+Motional Field
+-------------------------
+A field that represents a collection of velocity vectors of a set of 2D points on 
+an image based on the velocity vectors of those points in 3D
+
+Optical flow
+-------------------------
+A set of velocity vectos of a set 2D points derived from correspondences between two frames
+not from 3D points
+
+Is motional Field different from Optical Flow
+
+
+How to find Optical Flow? 
+----------------------------
